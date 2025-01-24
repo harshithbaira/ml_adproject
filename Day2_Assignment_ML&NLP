@@ -1,0 +1,27 @@
+my_list = [10, 20, 30, 40, 50]
+
+print("List Example:")
+print("First element:", my_list[0])  # Access first element
+print("Last element:", my_list[-1])  # Access last element
+print("Slice first three elements:", my_list[:3])  # Access first three elements
+
+my_tuple = ("apple", "banana", "cherry", "date", "elderberry")
+
+print("\nTuple Example:")
+print("Second element:", my_tuple[1])  # Access second element
+print("Last element:", my_tuple[-1])  # Access last element
+print("Slice elements from index 1 to 3:", my_tuple[1:4])  # Access elements from index 1 to 3
+
+my_dict = {
+    "name": "Alice",
+    "age": 25,
+    "city": "New York",
+    "profession": "Engineer",
+    "hobby": "Painting"
+}
+
+print("\nDictionary Example:")
+print("Value for key 'name':", my_dict["name"])  # Access value by key
+print("Value for key 'age':", my_dict["age"])  # Access value by key
+
+print("Get value for key 'country' (with default):", my_dict.get("country", "Key not found"))
