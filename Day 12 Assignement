@@ -1,0 +1,6 @@
+
+The visualizations are as follows:
+
+Bar Plot: It shows the total sum of Transaction_Amount for each Account_Type. The plot provides a clear comparison of transaction amounts across different account types.
+
+Pie Chart: It illustrates the percentage distribution of transactions across different branches, giving an overview of branch activity in terms of transaction count.
