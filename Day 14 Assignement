@@ -1,0 +1,51 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = {
+    "Product_ID": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    "Product_Name": ["PainRelief", "ColdCure", "HeadacheFix", "PainRelief", "ColdCure", "HeadacheFix", "PainRelief", "ColdCure", "HeadacheFix", "PainRelief"],
+    "Region": ["North America", "Europe", "Asia", "North America", "Europe", "Asia", "North America", "Europe", "Asia", "North America"],
+    "Marketing_Spend": [50000, 30000, 45000, 52000, 28000, 48000, 51000, 31000, 47000, 53000],
+    "Sales": [100000, 60000, 80000, 110000, 55000, 90000, 105000, 65000, 85000, 115000],
+    "Effectiveness": [85, 75, 80, 88, 70, 82, 86, 78, 80, 90],
+    "Side_Effects": [5, 2, 3, 4, 1, 3, 5, 2, 4, 6],
+    "Age_Group": ["20-30", "30-40", "40-50", "50-60", "30-40", "40-50", "20-30", "30-40", "50-60", "20-30"],
+    "Trial_Period": ["6 months", "3 months", "6 months", "12 months", "3 months", "6 months", "6 months", "3 months", "12 months", "6 months"]
+}
+
+df = pd.DataFrame(data)
+
+missing_values = df.isnull().sum()
+duplicates = df.duplicated().sum()
+
+plt.figure(figsize=(8, 6))
+sns.barplot(x="Region", y="Effectiveness", hue="Product_Name", data=df, estimator="mean", ci=None)
+plt.title("Average Effectiveness per Drug Across Regions")
+plt.show()
+
+plt.figure(figsize=(10, 6))
+sns.violinplot(x="Product_Name", y="Effectiveness", data=df, inner="quart", palette="muted")
+plt.title("Distribution of Effectiveness for Each Product")
+plt.show()
+
+plt.figure(figsize=(10, 6))
+sns.violinplot(x="Product_Name", y="Side_Effects", data=df, inner="quart", palette="muted")
+plt.title("Distribution of Side Effects for Each Product")
+plt.show()
+
+sns.pairplot(df[["Effectiveness", "Side_Effects", "Marketing_Spend"]])
+plt.suptitle("Pairplot: Effectiveness, Side Effects, Marketing Spend", y=1.02)
+plt.show()
+
+plt.figure(figsize=(8, 6))
+sns.boxplot(x="Trial_Period", y="Effectiveness", data=df)
+plt.title("Effectiveness Comparison Across Trial Periods")
+plt.show()
+
+plt.figure(figsize=(8, 6))
+sns.regplot(x="Marketing_Spend", y="Effectiveness", data=df)
+plt.title("Effectiveness vs Marketing Spend")
+plt.show()
+
+
