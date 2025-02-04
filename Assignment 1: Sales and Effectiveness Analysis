@@ -1,0 +1,49 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = {
+    "Product_ID": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    "Product_Name": ["PainRelief", "ColdCure", "HeadacheFix", "PainRelief", "ColdCure", "HeadacheFix", "PainRelief", "ColdCure", "HeadacheFix", "PainRelief"],
+    "Region": ["North America", "Europe", "Asia", "North America", "Europe", "Asia", "North America", "Europe", "Asia", "North America"],
+    "Marketing_Spend": [50000, 30000, 45000, 52000, 28000, 48000, 51000, 31000, 47000, 53000],
+    "Sales": [100000, 60000, 80000, 110000, 55000, 90000, 105000, 65000, 85000, 115000],
+    "Effectiveness": [85, 75, 80, 88, 70, 82, 86, 78, 80, 90],
+    "Side_Effects": [5, 2, 3, 4, 1, 3, 5, 2, 4, 6],
+    "Age_Group": ["20-30", "30-40", "40-50", "50-60", "30-40", "40-50", "20-30", "30-40", "50-60", "20-30"],
+    "Trial_Period": ["6 months", "3 months", "6 months", "12 months", "3 months", "6 months", "6 months", "3 months", "12 months", "6 months"]
+}
+
+df = pd.DataFrame(data)
+
+missing_values = df.isnull().sum()
+duplicates = df.duplicated().sum()
+
+plt.figure(figsize=(8, 6))
+sns.barplot(x="Region", y="Sales", data=df, estimator="sum", ci=None)
+plt.title("Total Sales per Region")
+plt.show()
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x="Marketing_Spend", y="Sales", data=df)
+plt.title("Marketing Spend vs Sales")
+plt.show()
+
+plt.figure(figsize=(8, 6))
+sns.boxplot(x="Age_Group", y="Effectiveness", data=df)
+plt.title("Drug Effectiveness Across Age Groups")
+plt.show()
+
+
+plt.figure(figsize=(10, 6))
+sns.lineplot(x="Trial_Period", y="Sales", hue="Product_Name", data=df, marker="o")
+plt.title("Sales Trend per Product Over Trial Periods")
+plt.show()
+
+correlation_matrix = df[["Sales", "Marketing_Spend", "Effectiveness"]].corr()
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f")
+plt.title("Correlation between Sales, Marketing Spend, and Effectiveness")
+plt.show()
+
+
